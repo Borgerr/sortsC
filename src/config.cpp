@@ -50,5 +50,9 @@ void configureMenu(MenuData& md) {
 
 // menu options
 void bubbleSort(ActionData& ad) {
-    
+    int size = getInteger(ad, "How big of a vector? ");
+    ad.newVector(size);
+    //int i;
+    // TODO: output vector and then sort using bubble sort. then output vector again
+
 }

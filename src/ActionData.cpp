@@ -32,7 +32,7 @@ std::vector<int>& ActionData::getVector() {
     return *mVector;
 }
 
-void ActionData::newVector(int& size) {
+void ActionData::newVector(const int& size) {
     if (mVector != 0) {
         delete mVector;
     }
@@ -41,7 +41,7 @@ void ActionData::newVector(int& size) {
 
     int i, tempValue;
     for (i = 0; i < size; i++) {
-        tempValue = std::rand % size + 1;
+        tempValue = std::rand() % size + 1;
         getVector()[i] = tempValue;
     }
 }

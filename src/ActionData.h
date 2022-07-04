@@ -12,7 +12,7 @@ public:
 	bool getDone() const;
 	void setDone();
     std::vector<int>& getVector();
-    void newVector(int& size);
+    void newVector(const int& size);
 	~ActionData();
 protected:
 	std::istream& mIs;
