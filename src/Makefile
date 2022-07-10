@@ -8,7 +8,7 @@ all: sort_menu
 
 
 #programs
-sort_menu: sort_menu.o MenuData.o ActionData.o config.o
+sort_menu: sort_menu.o MenuData.o ActionData.o config.o user_io.o
 	$(CXX) $(CXXFLAGS) -o sort_menu $^
 
 
@@ -24,6 +24,9 @@ ActionData.o: ActionData.cpp ActionData.h
 
 config.o: config.cpp
 	$(CXX) $(CXXFLAGS) -c -o config.o config.cpp
+
+user_io.o: user_io.cpp
+	$(CXX) $(CXXFLAGS) -c -o user_io.o user_io.cpp
 
 
 clean:

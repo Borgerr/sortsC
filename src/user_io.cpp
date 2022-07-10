@@ -1,7 +1,7 @@
 // Use these functions to get better user input output.
 #include <iostream>	// std::cout, std::cin
 #include <string>	// std::string
-#include "config.h"	// allows for export
+#include "include.h"// allows for export
 #include "ActionData.h"
 
 int getInteger(ActionData& ad, const std::string& prompt) {
