@@ -2,7 +2,7 @@ CXX := g++
 CXXFLAGS := -Werror -Wall -Wextra -Wpedantic
 #CXXFLAGS := -Werror -Wall -Wextra -Wpedantic -g#debugger
 LPFLAGS := -lpthread
-SORTFILES := bubble.h
+SORTFILES := bubble.h vector_funcs.h
 
 all: sort_menu
 

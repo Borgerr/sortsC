@@ -30,3 +30,17 @@
 *.exe
 *.out
 *.app
+
+#-------------
+# Added by Ash
+#-------------
+
+# Debugging
+*.in
+*.out
+
+# Possible file names
+sort_menu
+
+# Object files
+*.o
