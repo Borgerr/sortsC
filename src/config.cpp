@@ -1,7 +1,11 @@
 #include <iostream>
+#include <bits/stdc++.h>
 #include "include.h"
 #include "MenuData.h"
 #include "ActionData.h"
+#include "vector_funcs.h"
+// sorts
+#include "bubble.h"
 
 void showMenu(MenuData& md, ActionData& ad) {
 	std::vector<std::string> commands = md.getNames();
@@ -41,18 +45,34 @@ int sortMenu(std::istream& is, std::ostream& os) {
 void configureMenu(MenuData& md) {
 	// USE THE FOLLOWING TEMPLATE:
 	// md.addAction("name", function, "Long description.");
-
+    md.addAction("bubble", bubbleSort, "Test bubble sort implementation.");
+    md.addAction("refresh", refreshVector, "Make a new random vector and output its contents.");
 	// try to retain some kind of organization in this menu.
     // Quit should be at the bottom of the list.
 	md.addAction("quit", quit, "Exit the program.");
 }
 
-
 // menu options
-void bubbleSort(ActionData& ad) {
+void bubbleSort(ActionData& ad) {   // TODO: verify that this function works the way it should
     int size = getInteger(ad, "How big of a vector? ");
     ad.newVector(size);
-    //int i;
-    // TODO: output vector and then sort using bubble sort. then output vector again
 
+    ad.getOS() << "Original vector: ";
+    outputVector(ad, ad.getVector());
+    
+    std::vector<int> copy = ad.getVector();
+    bubble(copy);
+    std::sort(ad.getVector().begin(), ad.getVector().end());
+
+    ad.getOS() << "Bubble sorted vector: ";
+    outputVector(ad, copy);
+    ad.getOS() << "C++ std::sorted vector: ";
+    outputVector(ad, ad.getVector());
+}
+
+void refreshVector(ActionData& ad) {
+    int size = getInteger(ad, "How big of a vector? ");
+    ad.newVector(size);
+    ad.getOS() << "New vector: ";
+    outputVector(ad, ad.getVector());
 }

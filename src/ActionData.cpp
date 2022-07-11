@@ -1,9 +1,10 @@
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 #include "ActionData.h"
 
 ActionData::ActionData(std::istream& is, std::ostream& os) 
-	: mIs(is), mOs(os), done(false) {
+	: mIs(is), mOs(os), done(false), mVector(0) {
 }
 
 std::istream& ActionData::getIS() {
