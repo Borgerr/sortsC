@@ -6,12 +6,16 @@
 template < typename T >
 void bubble(std::vector< T >& myvector) {
     // remember vector s
+    T placeholder;
     bool sorted = false;
     while( !sorted ) {
         sorted = true;
-        for (auto it = myvector.begin(); it != myvector.end(); it++) {
-            if (*it > *it+1) {
-                *it, *(it+1) = *(it+1), *it;
+        for (auto it = myvector.begin(); it != myvector.end()-1; it++) {
+            if (*it > *(it+1)) {
+                //&it, &(it+1) = &(it+1), &it;
+                placeholder = *it;
+                *it = *(it+1);
+                *(it+1) = placeholder;
                 sorted = false;
             }
         }
