@@ -42,7 +42,7 @@ void ActionData::newVector(const int& size) {
 
     int i, tempValue;
     for (i = 0; i < size; i++) {
-        tempValue = std::rand() % size + 1;
+        tempValue = std::rand() % size;
         getVector()[i] = tempValue;
     }
 }
