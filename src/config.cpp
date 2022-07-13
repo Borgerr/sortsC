@@ -6,10 +6,11 @@
 #include "vector_funcs.h"
 // sorts
 #include "bubble.h"
+#include "counter.h"
 
 void showMenu(MenuData& md, ActionData& ad) {
 	std::vector<std::string> commands = md.getNames();
-	unsigned int i;				// iterator
+	unsigned int i;				        // iterator
 	unsigned int len = commands.size();	// iterated
 	std::string name;
 	for (i=0; i < len; i++) {
@@ -46,6 +47,7 @@ void configureMenu(MenuData& md) {
 	// USE THE FOLLOWING TEMPLATE:
 	// md.addAction("name", function, "Long description.");
     md.addAction("bubble", bubbleSort, "Test bubble sort implementation.");
+    md.addAction("counter", counterSort, "Test counter sort implementation.");
     md.addAction("refresh", refreshVector, "Make a new random vector and output its contents.");
 	// try to retain some kind of organization in this menu.
     // Quit should be at the bottom of the list.
@@ -53,7 +55,7 @@ void configureMenu(MenuData& md) {
 }
 
 // menu options
-void bubbleSort(ActionData& ad) {   // TODO: verify that this function works the way it should
+void bubbleSort(ActionData& ad) {
     int size = getInteger(ad, "How big of a vector? ");
     ad.newVector(size);
 
@@ -65,6 +67,23 @@ void bubbleSort(ActionData& ad) {   // TODO: verify that this function works the
     std::sort(ad.getVector().begin(), ad.getVector().end());
 
     ad.getOS() << "Bubble sorted vector: ";
+    outputVector(ad, copy);
+    ad.getOS() << "C++ std::sorted vector: ";
+    outputVector(ad, ad.getVector());
+}
+
+void counterSort(ActionData& ad) {  // TODO: implement counter sort
+    int size = getInteger(ad, "How big of a vector? ");
+    ad.newVector(size);
+
+    ad.getOS() << "Original vector: ";
+    outputVector(ad, ad.getVector());
+
+    std::vector<int> copy = ad.getVector();
+    counter(copy);
+    std::sort(ad.getVector().begin(), ad.getVector().end());
+
+    ad.getOS() << "Counter sorted vector:  ";
     outputVector(ad, copy);
     ad.getOS() << "C++ std::sorted vector: ";
     outputVector(ad, ad.getVector());

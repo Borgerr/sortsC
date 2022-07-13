@@ -12,7 +12,6 @@ void bubble(std::vector< T >& myvector) {
         sorted = true;
         for (auto it = myvector.begin(); it != myvector.end()-1; it++) {
             if (*it > *(it+1)) {
-                //&it, &(it+1) = &(it+1), &it;
                 placeholder = *it;
                 *it = *(it+1);
                 *(it+1) = placeholder;

@@ -22,6 +22,7 @@ void takeAction(const std::string& choice, MenuData& md, ActionData& ad);
 int sortMenu(std::istream& is, std::ostream& os);
 void configureMenu(MenuData& md);
 void bubbleSort(ActionData& ad);
+void counterSort(ActionData& ad);
 void refreshVector(ActionData& ad);
 
 #endif //__INCLUDE_H_
