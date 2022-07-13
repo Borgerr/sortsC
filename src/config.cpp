@@ -1,10 +1,10 @@
 #include <iostream>
-#include <bits/stdc++.h>
+#include <vector>
+#include <algorithm>
 #include "include.h"
 #include "MenuData.h"
 #include "ActionData.h"
 #include "vector_funcs.h"
-// sorts
 #include "sorts.h"
 
 void showMenu(MenuData& md, ActionData& ad) {
@@ -65,7 +65,7 @@ void bubbleSort(ActionData& ad) {
     bubble(copy);
     std::sort(ad.getVector().begin(), ad.getVector().end());
 
-    ad.getOS() << "Bubble sorted vector: ";
+    ad.getOS() << "Bubble sorted vector:   ";
     outputVector(ad, copy);
     ad.getOS() << "C++ std::sorted vector: ";
     outputVector(ad, ad.getVector());
@@ -87,6 +87,8 @@ void counterSort(ActionData& ad) {
     ad.getOS() << "C++ std::sorted vector: ";
     outputVector(ad, ad.getVector());
 }
+
+
 
 void refreshVector(ActionData& ad) {
     int size = getInteger(ad, "How big of a vector? ");

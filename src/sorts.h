@@ -44,4 +44,4 @@ void counter(std::vector< T >& myvector) {
     }
 }
 
-#endif  //__BUBBLE_H_
+#endif  //__SORTS_H_
