@@ -5,8 +5,7 @@
 #include "ActionData.h"
 #include "vector_funcs.h"
 // sorts
-#include "bubble.h"
-#include "counter.h"
+#include "sorts.h"
 
 void showMenu(MenuData& md, ActionData& ad) {
 	std::vector<std::string> commands = md.getNames();
@@ -72,7 +71,7 @@ void bubbleSort(ActionData& ad) {
     outputVector(ad, ad.getVector());
 }
 
-void counterSort(ActionData& ad) {  // TODO: implement counter sort
+void counterSort(ActionData& ad) {
     int size = getInteger(ad, "How big of a vector? ");
     ad.newVector(size);
 

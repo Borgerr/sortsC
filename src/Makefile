@@ -2,7 +2,6 @@ CXX := g++
 CXXFLAGS := -Werror -Wall -Wextra -Wpedantic
 #CXXFLAGS := -Werror -Wall -Wextra -Wpedantic -g#debugger
 LPFLAGS := -lpthread
-SORTFILES := bubble.h vector_funcs.h
 
 all: sort_menu
 
@@ -13,7 +12,7 @@ sort_menu: sort_menu.o MenuData.o ActionData.o config.o user_io.o
 
 
 #object files
-sort_menu.o: sort_menu.cpp $(SORTFILES)
+sort_menu.o: sort_menu.cpp
 	$(CXX) $(CXXFLAGS) -c -o sort_menu.o sort_menu.cpp
 
 MenuData.o: MenuData.cpp MenuData.h
@@ -22,7 +21,7 @@ MenuData.o: MenuData.cpp MenuData.h
 ActionData.o: ActionData.cpp ActionData.h
 	$(CXX) $(CXXFLAGS) -c -o ActionData.o ActionData.cpp
 
-config.o: config.cpp
+config.o: config.cpp sorts.h
 	$(CXX) $(CXXFLAGS) -c -o config.o config.cpp
 
 user_io.o: user_io.cpp
