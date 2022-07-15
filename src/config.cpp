@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <ctime>
 #include "include.h"
 #include "MenuData.h"
 #include "ActionData.h"
@@ -47,6 +48,7 @@ void configureMenu(MenuData& md) {
 	// md.addAction("name", function, "Long description.");
     md.addAction("bubble", bubbleSort, "Test bubble sort implementation.");
     md.addAction("counter", counterSort, "Test counter sort implementation.");
+    md.addAction("merge", mergeSort, "Test merge sort implementation.");
     md.addAction("refresh", refreshVector, "Make a new random vector and output its contents.");
 	// try to retain some kind of organization in this menu.
     // Quit should be at the bottom of the list.
@@ -61,14 +63,20 @@ void bubbleSort(ActionData& ad) {
     ad.getOS() << "Original vector: ";
     outputVector(ad, ad.getVector());
     
+    std::time_t startTime, endTime;
     std::vector<int> copy = ad.getVector();
+    std::time(&startTime);
     bubble(copy);
+    std::time(&endTime);
     std::sort(ad.getVector().begin(), ad.getVector().end());
 
     ad.getOS() << "Bubble sorted vector:   ";
     outputVector(ad, copy);
     ad.getOS() << "C++ std::sorted vector: ";
     outputVector(ad, ad.getVector());
+
+    compareVectors(ad, copy, ad.getVector());
+    ad.getOS() << "Sort took " << std::difftime(endTime, startTime) << " seconds." << std::endl;
 }
 
 void counterSort(ActionData& ad) {
@@ -78,17 +86,44 @@ void counterSort(ActionData& ad) {
     ad.getOS() << "Original vector: ";
     outputVector(ad, ad.getVector());
 
+    std::time_t startTime, endTime;
     std::vector<int> copy = ad.getVector();
+    std::time(&startTime);
     counter(copy);
+    std::time(&endTime);
     std::sort(ad.getVector().begin(), ad.getVector().end());
 
     ad.getOS() << "Counter sorted vector:  ";
     outputVector(ad, copy);
     ad.getOS() << "C++ std::sorted vector: ";
     outputVector(ad, ad.getVector());
+
+    compareVectors(ad, copy, ad.getVector());
+    ad.getOS() << "Sort took " << std::difftime(endTime, startTime) << " seconds." << std::endl;
 }
 
+void mergeSort(ActionData& ad) {
+    int size = getInteger(ad, "How big of a vector? ");
+    ad.newVector(size);
 
+    ad.getOS() << "Original vector: ";
+    outputVector(ad, ad.getVector());
+
+    std::time_t startTime, endTime;
+    std::vector<int> copy = ad.getVector();
+    std::time(&startTime);
+    merge(copy);
+    std::time(&endTime);
+    std::sort(ad.getVector().begin(), ad.getVector().end());
+
+    ad.getOS() << "Merge sorted vector:    ";
+    outputVector(ad, copy);
+    ad.getOS() << "C++ std::sorted vector: ";
+    outputVector(ad, ad.getVector());
+
+    compareVectors(ad, copy, ad.getVector());
+    ad.getOS() << "Sort took " << std::difftime(endTime, startTime) << " seconds." << std::endl;
+}
 
 void refreshVector(ActionData& ad) {
     int size = getInteger(ad, "How big of a vector? ");
