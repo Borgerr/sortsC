@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <ctime>
+#include <string>
 #include "include.h"
 #include "MenuData.h"
 #include "ActionData.h"
@@ -57,52 +58,18 @@ void configureMenu(MenuData& md) {
 
 // menu options
 void bubbleSort(ActionData& ad) {
-    int size = getInteger(ad, "How big of a vector? ");
-    ad.newVector(size);
-
-    ad.getOS() << "Original vector: ";
-    outputVector(ad, ad.getVector());
-    
-    std::time_t startTime, endTime;
-    std::vector<int> copy = ad.getVector();
-    std::time(&startTime);
-    bubble(copy);
-    std::time(&endTime);
-    std::sort(ad.getVector().begin(), ad.getVector().end());
-
-    ad.getOS() << "Bubble sorted vector:   ";
-    outputVector(ad, copy);
-    ad.getOS() << "C++ std::sorted vector: ";
-    outputVector(ad, ad.getVector());
-
-    compareVectors(ad, copy, ad.getVector());
-    ad.getOS() << "Sort took " << std::difftime(endTime, startTime) << " seconds." << std::endl;
+    templateSort(ad, "bubble");
 }
 
 void counterSort(ActionData& ad) {
-    int size = getInteger(ad, "How big of a vector? ");
-    ad.newVector(size);
-
-    ad.getOS() << "Original vector: ";
-    outputVector(ad, ad.getVector());
-
-    std::time_t startTime, endTime;
-    std::vector<int> copy = ad.getVector();
-    std::time(&startTime);
-    counter(copy);
-    std::time(&endTime);
-    std::sort(ad.getVector().begin(), ad.getVector().end());
-
-    ad.getOS() << "Counter sorted vector:  ";
-    outputVector(ad, copy);
-    ad.getOS() << "C++ std::sorted vector: ";
-    outputVector(ad, ad.getVector());
-
-    compareVectors(ad, copy, ad.getVector());
-    ad.getOS() << "Sort took " << std::difftime(endTime, startTime) << " seconds." << std::endl;
+    templateSort(ad, "counter");
 }
 
 void mergeSort(ActionData& ad) {
+    templateSort(ad, "merge");
+}
+
+void templateSort(ActionData& ad, const std::string& sortName) {
     int size = getInteger(ad, "How big of a vector? ");
     ad.newVector(size);
 
@@ -112,14 +79,24 @@ void mergeSort(ActionData& ad) {
     std::time_t startTime, endTime;
     std::vector<int> copy = ad.getVector();
     std::time(&startTime);
-    merge(copy);
+    
+    if (sortName == "bubble") {
+        bubble(copy);
+    }else if (sortName == "counter") {
+        counter(copy);
+    }else if (sortName == "merge") {
+        merge(copy);
+    }
+
     std::time(&endTime);
     std::sort(ad.getVector().begin(), ad.getVector().end());
 
-    ad.getOS() << "Merge sorted vector:    ";
-    outputVector(ad, copy);
-    ad.getOS() << "C++ std::sorted vector: ";
-    outputVector(ad, ad.getVector());
+    if (size <= 20) {
+        ad.getOS() << sortName << " sorted vector: ";
+        outputVector(ad, copy);
+        ad.getOS() << "C++ std::sorted vector: ";
+        outputVector(ad, ad.getVector());
+    }
 
     compareVectors(ad, copy, ad.getVector());
     ad.getOS() << "Sort took " << std::difftime(endTime, startTime) << " seconds." << std::endl;

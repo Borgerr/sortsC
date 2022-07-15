@@ -7,9 +7,13 @@
 
 template < typename T >
 void outputVector(ActionData& ad, std::vector< T >& myvector) {
+
+    /*  USE IF YOU WANT TO LIMIT HOW MANY ITEMS ARE OUTPUT
     if (myvector.size() > 20) {
         return;
     }
+    */
+
     for (auto it = myvector.begin(); it != myvector.end(); it++) {
         ad.getOS() << *it;
         if (it != myvector.end() - 1) {
