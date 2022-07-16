@@ -49,7 +49,6 @@ void merge(std::vector< T >& myvector) {
         return;
     }
     std::vector< T > left, right;
-    // THIS SPOT IS THE MOST SHAKY
     int midpoint = myvector.size() / 2;
     int i;
     for (i = 0; i < midpoint; i++) {
@@ -59,12 +58,9 @@ void merge(std::vector< T >& myvector) {
     for (i = midpoint; i < s; i++) {
         right.push_back(myvector[i]);
     }
-    //left = myvector[:midpoint];
-    //right = myvector[midpoint:];
-    // ---------------------------
     merge(left);
     merge(right);
-    i = 0;  // left iterator
+    i = 0;      // left iterator
     int j = 0;  // right iterator
     int k = 0;  // center iterator
     int leftSize = left.size();
@@ -90,6 +86,37 @@ void merge(std::vector< T >& myvector) {
         j++;
         k++;
     }
+}
+
+template < typename T >
+void quick_r(std::vector< T >& myvector, const int& start, const int& end) {
+    if (end - start <= 0) {
+        return;
+    }
+    int pivot = start;
+    int lgmt = start + 1;
+    int i;
+    T temp;
+    for (i = start+1; i < end+1; i++) {
+        if (myvector[i] < myvector[pivot]) {
+            temp = myvector[i];
+            myvector[i] = myvector[lgmt];
+            myvector[lgmt] = temp;
+            lgmt++;
+        }
+    }
+    pivot = lgmt-1;
+    temp = myvector[pivot];
+    myvector[pivot] = myvector[start];
+    myvector[start] = temp;
+
+    quick_r(myvector, start, pivot-1);
+    quick_r(myvector, pivot+1, end);
+}
+
+template < typename T >
+void quick(std::vector< T >& myvector) {
+    quick_r(myvector, 0, myvector.size()-1);
 }
 
 #endif  //__SORTS_H_

@@ -24,6 +24,7 @@ void configureMenu(MenuData& md);
 void bubbleSort(ActionData& ad);
 void counterSort(ActionData& ad);
 void mergeSort(ActionData& ad);
+void quickSort(ActionData& ad);
 void templateSort(ActionData& ad, const std::string& sortName);
 void refreshVector(ActionData& ad);
 

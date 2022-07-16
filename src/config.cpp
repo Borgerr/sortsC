@@ -50,6 +50,7 @@ void configureMenu(MenuData& md) {
     md.addAction("bubble", bubbleSort, "Test bubble sort implementation.");
     md.addAction("counter", counterSort, "Test counter sort implementation.");
     md.addAction("merge", mergeSort, "Test merge sort implementation.");
+    md.addAction("quick", quickSort, "Test quick sort implementation.");
     md.addAction("refresh", refreshVector, "Make a new random vector and output its contents.");
 	// try to retain some kind of organization in this menu.
     // Quit should be at the bottom of the list.
@@ -69,6 +70,10 @@ void mergeSort(ActionData& ad) {
     templateSort(ad, "merge");
 }
 
+void quickSort(ActionData& ad) {
+    templateSort(ad, "quick");
+}
+
 void templateSort(ActionData& ad, const std::string& sortName) {
     int size = getInteger(ad, "How big of a vector? ");
     ad.newVector(size);
@@ -86,6 +91,11 @@ void templateSort(ActionData& ad, const std::string& sortName) {
         counter(copy);
     }else if (sortName == "merge") {
         merge(copy);
+    }else if (sortName == "quick") {
+        quick(copy);
+    }else {
+        ad.getOS() << "FUNCTIONAL ERROR. Check config.cpp";
+        return;
     }
 
     std::time(&endTime);
