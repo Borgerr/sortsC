@@ -78,12 +78,14 @@ void templateSort(ActionData& ad, const std::string& sortName) {
     int size = getInteger(ad, "How big of a vector? ");
     ad.newVector(size);
 
-    ad.getOS() << "Original vector: ";
-    outputVector(ad, ad.getVector());
+    if (size <= 20) {
+        ad.getOS() << "Original vector: ";
+        outputVector(ad, ad.getVector());
+    }
 
-    std::time_t startTime, endTime;
+    std::clock_t startTime, endTime;
     std::vector<int> copy = ad.getVector();
-    std::time(&startTime);
+    startTime = std::clock();
     
     if (sortName == "bubble") {
         bubble(copy);
@@ -98,7 +100,7 @@ void templateSort(ActionData& ad, const std::string& sortName) {
         return;
     }
 
-    std::time(&endTime);
+    endTime = std::clock();
     std::sort(ad.getVector().begin(), ad.getVector().end());
 
     if (size <= 20) {
@@ -109,7 +111,7 @@ void templateSort(ActionData& ad, const std::string& sortName) {
     }
 
     compareVectors(ad, copy, ad.getVector());
-    ad.getOS() << "Sort took " << std::difftime(endTime, startTime) << " seconds." << std::endl;
+    ad.getOS() << "Sort took " << std::difftime(endTime, startTime) / 1000 << " ms" << std::endl;
 }
 
 void refreshVector(ActionData& ad) {
