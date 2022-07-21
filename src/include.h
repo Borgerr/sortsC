@@ -21,11 +21,14 @@ void showMenu(MenuData& md, ActionData& ad);
 void takeAction(const std::string& choice, MenuData& md, ActionData& ad);
 int sortMenu(std::istream& is, std::ostream& os);
 void configureMenu(MenuData& md);
-void bubbleSort(ActionData& ad);
-void counterSort(ActionData& ad);
-void mergeSort(ActionData& ad);
-void quickSort(ActionData& ad);
 void templateSort(ActionData& ad, const std::string& sortName);
 void refreshVector(ActionData& ad);
+
+// declarations (options.cpp)
+void testBST(ActionData& ad);
+void quickSort(ActionData& ad);
+void counterSort(ActionData& ad);
+void bubbleSort(ActionData& ad);
+void mergeSort(ActionData& ad);
 
 #endif //__INCLUDE_H_

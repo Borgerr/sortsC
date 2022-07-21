@@ -57,23 +57,6 @@ void configureMenu(MenuData& md) {
 	md.addAction("quit", quit, "Exit the program.");
 }
 
-// menu options
-void bubbleSort(ActionData& ad) {
-    templateSort(ad, "bubble");
-}
-
-void counterSort(ActionData& ad) {
-    templateSort(ad, "counter");
-}
-
-void mergeSort(ActionData& ad) {
-    templateSort(ad, "merge");
-}
-
-void quickSort(ActionData& ad) {
-    templateSort(ad, "quick");
-}
-
 void templateSort(ActionData& ad, const std::string& sortName) {
     int size = getInteger(ad, "How big of a vector? ");
     ad.newVector(size);

@@ -7,7 +7,7 @@ all: sort_menu
 
 
 #programs
-sort_menu: sort_menu.o MenuData.o ActionData.o config.o user_io.o
+sort_menu: sort_menu.o MenuData.o ActionData.o config.o user_io.o options.o
 	$(CXX) $(CXXFLAGS) -o sort_menu $^
 
 
@@ -26,6 +26,9 @@ config.o: config.cpp sorts.h
 
 user_io.o: user_io.cpp
 	$(CXX) $(CXXFLAGS) -c -o user_io.o user_io.cpp
+
+options.o: options.cpp
+	$(CXX) $(CXXFLAGS) -c -o options.o options.cpp
 
 
 clean:
