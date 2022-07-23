@@ -52,6 +52,12 @@ void configureMenu(MenuData& md) {
     md.addAction("merge", mergeSort, "Test merge sort implementation.");
     md.addAction("quick", quickSort, "Test quick sort implementation.");
     md.addAction("refresh", refreshVector, "Make a new random vector and output its contents.");
+    md.addAction("new-bst", newBST, "Make a new, empty BST.");
+    md.addAction("bst-insert-random", testBstInsert, "Insert random ints into a BST. Requires an active BST.");
+    md.addAction("bst-insert-single", bstInsertSpecific, "Insert one specific integer into the BST. Requires an active BST.");
+    md.addAction("bst-size", testBstSize, "Print the size of a BST. Requires an active BST.");
+    md.addAction("bst-delete", deleteBranch, "Delete an integer from the BST. Requires an active BST.");
+    md.addAction("bst-exists", bstExistsSpecific, "Check if a specific integer exists in the BST. Requires an active BST.");
 	// try to retain some kind of organization in this menu.
     // Quit should be at the bottom of the list.
 	md.addAction("quit", quit, "Exit the program.");

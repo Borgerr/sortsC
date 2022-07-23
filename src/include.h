@@ -31,4 +31,11 @@ void counterSort(ActionData& ad);
 void bubbleSort(ActionData& ad);
 void mergeSort(ActionData& ad);
 
+void newBST(ActionData& ad);
+void testBstInsert(ActionData& ad);
+void bstInsertSpecific(ActionData& ad);
+void testBstSize(ActionData& ad);
+void deleteBranch(ActionData& ad);
+void bstExistsSpecific(ActionData& ad);
+
 #endif //__INCLUDE_H_

@@ -2,9 +2,10 @@
 #include <iostream>
 #include <vector>
 #include "ActionData.h"
+#include "BST.h"
 
 ActionData::ActionData(std::istream& is, std::ostream& os) 
-	: mIs(is), mOs(os), done(false), mVector(0) {
+	: mIs(is), mOs(os), done(false), mVector(0), mBST(0) {
 }
 
 std::istream& ActionData::getIS() {
@@ -27,6 +28,9 @@ ActionData::~ActionData() {
 	if (mVector != 0) {
 		delete mVector;
 	}
+    if (mBST != 0) {
+        delete mBST;
+    }
 }
 
 std::vector<int>& ActionData::getVector() {
@@ -45,4 +49,15 @@ void ActionData::newVector(const int& size) {
         tempValue = std::rand() % size;
         getVector()[i] = tempValue;
     }
+}
+
+void ActionData::newBST() {
+    if (mBST != 0) {
+        delete mBST;
+    }
+    mBST = new BST<int>;
+}
+
+BST<int>* ActionData::getBST() {
+    return mBST;
 }
