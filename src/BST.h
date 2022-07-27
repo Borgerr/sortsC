@@ -81,6 +81,7 @@ Branch< T >* BST< T >::insertR(Branch< T >* ptr, Branch< T >* current) {
 
 template < typename T >
 Branch< T >* BST< T >::removeR(const T& item, Branch< T >* current) {
+    // TODO: fix pointer deletes
     if (current->getItem() < item) {
         current->setRight(removeR(item, current->getRight()));
     }else if (current->getItem() > item) {
@@ -88,15 +89,16 @@ Branch< T >* BST< T >::removeR(const T& item, Branch< T >* current) {
     }else {
         if ((current->getLeft() == 0) && (current->getRight() == 0)) {   // no child case
             delete current;
-        }else if (current->getLeft() == 0) {    // right child case
+            return 0;
+        }else if (current->getLeft() == 0) {                             // right child case
             Branch< T >* pTemp = current;
             current = current->getRight();
             delete pTemp;
-        }else if (current->getRight() == 0) {   // left child case
+        }else if (current->getRight() == 0) {                            // left child case
             Branch< T >* pTemp = current;
             current = current->getLeft();
             delete pTemp;
-        }else {                                 // both child case
+        }else {                                                          // both child case
             Branch< T >* pSuccessor = current->getRight();
             while (pSuccessor->getLeft() != 0) {
                 pSuccessor = pSuccessor->getLeft();
